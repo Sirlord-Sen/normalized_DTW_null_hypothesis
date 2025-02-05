@@ -30,8 +30,6 @@ function [pp_subTcs, pp_subTcs_nz] = post_processing(subTcs, TR, band)
     for sub = 1:size(subTcs, 1)
         fprintf('Processing subject: %d\n', sub)
         pp_subTcs_nz(sub, :, :) = detrend(squeeze(subTcs(sub, :, :))); % Linear Detrending
-        
-        pp_subTcs_nz(sub, :, :) = icatb_despike_tc(squeeze(pp_subTcs_nz(sub, :, :)), TR); % Linear De-spiking
 
         pp_subTcs_nz(sub, :, :) = filtering(squeeze(pp_subTcs_nz(sub, :, :)), srate, band); % Filtering
         
